@@ -11,10 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'MainController@home')->name('main.home');
+Route::patch('update-token', 'MainController@updateToken')->middleware('guest')->name('main.updateToken');

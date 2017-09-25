@@ -70,8 +70,13 @@
                 </div>
             </div>
         </nav>
+        <div class="container">
+            <div class="row">
+                @include('flash::message')
+                @yield('content')
+            </div>
+        </div>
 
-        @yield('content')
     </div>
 
     <!-- Scripts -->
