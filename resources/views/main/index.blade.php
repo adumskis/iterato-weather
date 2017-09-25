@@ -23,20 +23,30 @@
             {{ Form::close() }}
         @endif
 
-        <div class="panel panel-default">
-            <div class="panel-heading">Homepage</div>
+        <div>
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#add-new" aria-controls="add-new" role="tab" data-toggle="tab">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </a>
+                </li>
+            </ul>
 
-            <div class="panel-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis hendrerit consectetur.
-                Fusce mauris ante, sollicitudin at felis vel, maximus tempor nunc. Duis accumsan vulputate
-                laoreet. Pellentesque aliquam, nisi lacinia finibus ornare, massa lorem ultrices diam, varius
-                volutpat est turpis ac nunc. In quis nibh urna. Cras malesuada scelerisque pulvinar. Suspendisse
-                nec nunc ut turpis ultricies consectetur. Cras commodo arcu eleifend, semper nisi a, faucibus
-                dui. Nunc sit amet tincidunt enim. Nullam quis nulla pellentesque, auctor velit sed, malesuada
-                diam. Nam ac tortor pulvinar, ornare ante sed, placerat dui. Etiam hendrerit, est id fermentum
-                sagittis, mauris mauris vulputate lectus, vitae ultrices nisl orci dictum metus. Suspendisse
-                tempus lorem et turpis pulvinar dictum. Fusce rhoncus congue semper. Maecenas posuere molestie
-                sapien, sit amet finibus ante pretium ultricies.
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane panel active" id="add-new">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            {{ Form::label('city', trans('text.city')) }}
+                            {{ Form::text('city', '', ['class' => 'form-control', 'id' => 'city-input']) }}
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-primary">
+                            @lang('text.submit')
+                        </button>
+                    </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
