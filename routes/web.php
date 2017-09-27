@@ -15,3 +15,8 @@ Auth::routes();
 
 Route::get('/', 'MainController@home')->name('main.home');
 Route::patch('update-token', 'MainController@updateToken')->middleware('guest')->name('main.updateToken');
+
+
+Route::get('test', function(){
+    dd(\App\Facades\Weather::appId('089b372bbf91c747bd842cb082c2263c')->query('utena')->raw());
+});
