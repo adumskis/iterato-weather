@@ -1,7 +1,9 @@
 <?php
 
 return [
-    'api_token' => 'API token',
-    'city'      => 'City',
-    'submit'    => 'Submit',
+    'api_id'      => 'API Id',
+    'city'        => 'City',
+    'submit'      => 'Submit',
+    'query'       => 'Query',
+    'temperature' => 'Temperature',
 ];
