@@ -2,22 +2,17 @@
 
 @section('content')
     <div class="col-md-8 col-md-offset-2">
-        @if(!auth()->check() || is_null(auth()->user()->api_id))
-            {{ Form::open(['method' => 'PATCH', 'route' => 'main.updateToken']) }}
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    @lang('text.api_id')
-                </div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        {{ Form::label('api_id', trans('text.api_id')) }}
-                        {{ Form::text('api_id', old('api_id', '089b372bbf91c747bd842cb082c2263c'), ['class' => 'form-control']) }}
-                    </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                @lang('text.api_id')
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    {{ Form::label('api_id', trans('text.api_id')) }}
+                    {{ Form::text('api_id', auth()->check()?auth()->user()->app_id:session()->get('app_id', ''), ['class' => 'form-control']) }}
                 </div>
             </div>
-            {{ Form::close() }}
-        @endif
-
+        </div>
         <div>
             <ul class="nav nav-tabs" id="cities-list" role="tablist">
                 <li role="presentation" class="active">
@@ -94,7 +89,15 @@
 
 @section('javascript')
     <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         $(document).ready(function () {
+            var initAppId = $('input#api_id').val();
+
             $('#add-city').on('click', function (e) {
                 e.preventDefault();
                 var appId = $('input#api_id').val();
@@ -139,6 +142,10 @@
                         alert('Error: ' + error);
                     }
                 });
+
+                if (appId !== initAppId) {
+                    saveAppId(appId);
+                }
             });
 
             function getWindDirection(deg) {
@@ -149,6 +156,15 @@
                 var index = Math.round((deg % 360) / 22.5, 0) + 1;
 
                 return directions[index];
+            }
+
+            function saveAppId(appId){
+                $.ajax('/update-app-id', {
+                    method: 'PATCH',
+                    data: {
+                        app_id: appId
+                    }
+                });
             }
         });
     </script>

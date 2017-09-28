@@ -22,10 +22,18 @@ class MainController extends Controller
      *
      * @return  Response
      */
-    public function updateToken(Request $request)
+    public function updateAppId(Request $request)
     {
-        dd($request->validate([
-            'api_token' => 'required'
-        ]));
+        if (!$request->ajax()) {
+            return redirect()->route('main.home');
+        }
+
+        if (auth()->check()) {
+            $user = auth()->user();
+            $user->app_id = $request->get('app_id');
+            $user->save();
+        } else {
+            $request->session()->put('app_id', $request->get('app_id'));
+        }
     }
 }

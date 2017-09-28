@@ -14,4 +14,4 @@
 Auth::routes();
 
 Route::get('/', 'MainController@home')->name('main.home');
-Route::patch('update-token', 'MainController@updateToken')->middleware('guest')->name('main.updateToken');
+Route::patch('update-app-id', 'MainController@updateAppId')->name('main.updateAppId');
