@@ -69,7 +69,7 @@
                             <dd>${sys_sunrise}</dd>
 
                             <dt>Sunset:</dt>
-                            <dd>${sys_sunset}/dd>
+                            <dd>${sys_sunset}</dd>
                         </dl>
                     </div>
                 </div>
