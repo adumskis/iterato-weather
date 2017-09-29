@@ -8,7 +8,7 @@ use Illuminate\Http\Response;
 class MainController extends Controller
 {
     /**
-     * Show the application dashboard.
+     * Show main page
      *
      * @return Response
      */
@@ -18,8 +18,8 @@ class MainController extends Controller
     }
 
     /**
-     * Update API token
-     *
+     * Ajax endpoint to update app_id for user
+     * @param Request $request
      * @return  Response
      */
     public function updateAppId(Request $request)
@@ -35,5 +35,7 @@ class MainController extends Controller
         } else {
             $request->session()->put('app_id', $request->get('app_id'));
         }
+
+        return 'OK';
     }
 }
